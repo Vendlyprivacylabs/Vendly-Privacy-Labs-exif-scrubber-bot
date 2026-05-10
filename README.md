@@ -44,21 +44,6 @@ There is no upload directory, no database, no temp file, no log of image content
 
 ---
 
-## Transforms applied
-
-Each transform runs independently. A failure in one never stops the rest.
-
-| # | Transform | Purpose |
-|---|-----------|---------|
-| 1 | Micro-crop | Shaves 0.5–1.5% off random edges, resizes back — shifts spatial features |
-| 2 | Perspective warp | Subtle corner shift — breaks geometric invariance in CNN similarity models |
-| 3 | Micro-rotation | ±0.75° — disrupts rotation-invariant feature extractors |
-| 4 | Per-channel nudge | Each RGB channel shifted independently — disrupts colour histogram matching |
-| 5 | Brightness nudge | ±3% — breaks perceptual hash comparisons |
-| 6 | Contrast nudge | ±3% — further disrupts visual similarity scores |
-| 7 | Gaussian noise | ±4 per channel — disrupts spatial frequency patterns CNN first layers extract |
-
-After all transforms, a **pixel rebuild** creates a brand new image object from raw pixel data only. No EXIF, XMP, IPTC or ICC profile from the original is carried over.
 
 ---
 
